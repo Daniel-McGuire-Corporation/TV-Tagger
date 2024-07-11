@@ -12,4 +12,4 @@
  - Update the 'Episode Outline' template.json as needed (If you need help, take a look at the examples.)
 
 3. Run the script.
- - ```python tag.py -json Path.To.Your.Outline.json```
+ - ```python tag.py -json Path.To.Your.Outline.json``` (defaults to 'template.json')
