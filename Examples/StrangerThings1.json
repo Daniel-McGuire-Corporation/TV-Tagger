@@ -1,0 +1,44 @@
+{
+  "Show": {
+    "Title": "Stranger Things",
+    "Seasons": {
+      "Season 1": {
+        "Title": "1",
+        "Episodes": {
+          "E1": {
+            "Title": "Chapter One: The Vanishing of Will Byers",
+            "Comment": "Will Byers disappears under mysterious circumstances."
+          },
+          "E2": {
+            "Title": "Chapter Two: The Weirdo on Maple Street",
+            "Comment": "The boys search for Will while Eleven makes a startling discovery."
+          },
+          "E3": {
+            "Title": "Chapter Three: Holly, Jolly",
+            "Comment": "Joyce and the boys face terrifying forces to find Will."
+          },
+          "E4": {
+            "Title": "Chapter Four: The Body",
+            "Comment": "Hawkins Lab's secrets are revealed as the search for Will continues."
+          },
+          "E5": {
+            "Title": "Chapter Five: The Flea and the Acrobat",
+            "Comment": "Hopper and Joyce uncover the truth about Hawkins Lab."
+          },
+          "E6": {
+            "Title": "Chapter Six: The Monster",
+            "Comment": "Nancy and Jonathan confront the monster from the Upside Down."
+          },
+          "E7": {
+            "Title": "Chapter Seven: The Bathtub",
+            "Comment": "Eleven helps the boys as they set a trap for the creature."
+          },
+          "E8": {
+            "Title": "Chapter Eight: The Upside Down",
+            "Comment": "The final showdown with the Demogorgon."
+          }
+        }
+      }
+    }
+  }
+}

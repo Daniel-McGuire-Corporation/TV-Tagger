@@ -1,0 +1,44 @@
+{
+  "Show": {
+    "Title": "Your Show Title",
+    "Seasons": {
+      "Season 1": {
+        "Title": "Season 1",
+        "Episodes": {
+          "E01": {
+            "Title": "Episode 1 Title",
+            "Comment": "Episode 1 comment or description."
+          },
+          "E02": {
+            "Title": "Episode 2 Title",
+            "Comment": "Episode 2 comment or description."
+          },
+          "E03": {
+            "Title": "Episode 3 Title",
+            "Comment": "Episode 3 comment or description."
+          }
+          // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
+        }
+      },
+      "Season 2": {
+        "Title": "Season 2",
+        "Episodes": {
+          "E01": {
+            "Title": "Episode 1 Title",
+            "Comment": "Episode 1 comment or description."
+          },
+          "E02": {
+            "Title": "Episode 2 Title",
+            "Comment": "Episode 2 comment or description."
+          },
+          "E03": {
+            "Title": "Episode 3 Title",
+            "Comment": "Episode 3 comment or description."
+          }
+          // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
+        }
+      }
+      // Add more seasons as needed (DO NOT INCLUDE THIS LINE)
+    }
+  }
+}

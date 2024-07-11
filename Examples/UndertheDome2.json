@@ -1,0 +1,64 @@
+{
+  "Show": {
+    "Title": "Under the Dome",
+    "Seasons": {
+      "Season 2": {
+        "Title": "",
+        "Episodes": {
+          "E1": {
+            "Title": "Heads Will Roll",
+            "Comment": ""
+          },
+          "E2": {
+            "Title": "Infestation",
+            "Comment": ""
+          },
+          "E3": {
+            "Title": "Force Majeure",
+            "Comment": ""
+          },
+          "E4": {
+            "Title": "Revelation",
+            "Comment": ""
+          },
+          "E5": {
+            "Title": "Reconciliation",
+            "Comment": ""
+          },
+          "E6": {
+            "Title": "In the Dark",
+            "Comment": ""
+          },
+          "E7": {
+            "Title": "Going Home",
+            "Comment": ""
+          },
+          "E8": {
+            "Title": "Awakening",
+            "Comment": ""
+          },
+          "E9": {
+            "Title": "The Red Door",
+            "Comment": ""
+          },
+          "E10": {
+            "Title": "The Fall",
+            "Comment": ""
+          },
+          "E11": {
+            "Title": "Black Ice",
+            "Comment": ""
+          },
+          "E12": {
+            "Title": "Turn",
+            "Comment": ""
+          },
+          "E13": {
+            "Title": "Go Now",
+            "Comment": ""
+          }
+        }
+      }
+    }
+  }
+}
