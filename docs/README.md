@@ -1,7 +1,7 @@
 # TV Tagger [<sub>Leave a name suggestion here!</sub>](https://github.com/Daniel-McGuire-Corporation/TV-Tagger/discussions/2)
 
 > [!IMPORTANT] 
-> Requires ffmpeg in PATH.
+> Requires [ffmpeg](https://ffmpeg.org/download.html) in PATH.
 > 
 > Doesn't work with multiple seasons (yet.)
 
