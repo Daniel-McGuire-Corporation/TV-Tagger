@@ -6,7 +6,7 @@
 ## How to use:
 
 1. Gather Files.
- - Put the Python Script, template.json, and all episodes (MKV or MP4) in the same folder.
+ - Put the Python Script, template.json, and all episodes (MKV or MP4) in the same folder. (Only one type of video file at a time!)
 
 2. Setup.
  - Update the 'Episode Outline' template.json as needed (If you need help, take a look at the examples.)
