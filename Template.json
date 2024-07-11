@@ -2,7 +2,7 @@
   "Show": {
     "Title": "Your Show Title",
     "Seasons": {
-      "Season 1": {
+      "Season 01": {
         "Title": "",
         "Episodes": {
           "E01": {
@@ -20,7 +20,7 @@
           // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
         }
       },
-      "Season 2": {
+      "Season 02": {
         "Title": "Season 2",
         "Episodes": {
           "E01": {
