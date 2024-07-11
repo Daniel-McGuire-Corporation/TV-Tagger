@@ -98,7 +98,7 @@ def update_metadata(json_file):
 
         # Modify the MP4 file's metadata using ffmpeg
         modified_mp4 = f"{mp4_file}_modified.mp4"
-        os.system(f'ffmpeg -i "{mp4_file}" -metadata title="{new_title}" -metadata comments="{episode_comment}" -c copy "{modified_mp4}"')
+        os.system(f'ffmpeg -i "{mp4_file}" -metadata title="{new_title}" -metadata comment="{episode_comment}" -c copy "{modified_mp4}"')
         
         # Move the modified file to the season folder instead of the original file
         shutil.move(modified_mp4, os.path.join(season_folder, mp4_file))
