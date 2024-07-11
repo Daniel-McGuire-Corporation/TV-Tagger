@@ -3,19 +3,19 @@
     "Title": "Your Show Title",
     "Seasons": {
       "Season 1": {
-        "Title": "Season 1",
+        "Title": "",
         "Episodes": {
           "E01": {
             "Title": "Episode 1 Title",
-            "Comment": "Episode 1 comment or description."
+            "Comment": "Episode 1 description."
           },
           "E02": {
             "Title": "Episode 2 Title",
-            "Comment": "Episode 2 comment or description."
+            "Comment": "Episode 2 description."
           },
           "E03": {
             "Title": "Episode 3 Title",
-            "Comment": "Episode 3 comment or description."
+            "Comment": "Episode 3 description."
           }
           // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
         }
@@ -25,15 +25,15 @@
         "Episodes": {
           "E01": {
             "Title": "Episode 1 Title",
-            "Comment": "Episode 1 comment or description."
+            "Comment": "Episode 1 description."
           },
           "E02": {
             "Title": "Episode 2 Title",
-            "Comment": "Episode 2 comment or description."
+            "Comment": "Episode 2 description."
           },
           "E03": {
             "Title": "Episode 3 Title",
-            "Comment": "Episode 3 comment or description."
+            "Comment": "Episode 3 description."
           }
           // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
         }
