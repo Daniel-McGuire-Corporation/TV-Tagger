@@ -118,7 +118,7 @@ def update_metadata(json_file):
 
 def main():
     parser = argparse.ArgumentParser(description="Convert MKV files to MP4, split special episodes, and update metadata from JSON.")
-    parser.add_argument("-json", metavar="JSON_FILE", type=str, default="season.json", help="Path to JSON file for metadata (default: season.json)")
+    parser.add_argument("-json", metavar="JSON_FILE", type=str, default="template.json", help="Path to JSON file for metadata (default: template.json)")
     parser.add_argument("-help", action="store_true", help="Show this help message and exit")
     args = parser.parse_args()
 
