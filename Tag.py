@@ -84,7 +84,7 @@ def update_metadata(json_file):
             season_title = data["Show"]["Seasons"][f"Season {season}"]["Title"]
             episode_data = data["Show"]["Seasons"][f"Season {season}"]["Episodes"][f"E{episode.zfill(2)}"]
             episode_title = episode_data["Title"]
-            episode_comment = episode_data["Comment"]
+            episode_comment = episode_data["Comments"]
             
             new_title = f"{show_title} | {season_title} S{season}E{episode} - {episode_title}"
             
@@ -97,16 +97,19 @@ def update_metadata(json_file):
             os.makedirs(season_folder)
 
         # Modify the MP4 file's metadata using ffmpeg
-        os.system(f'ffmpeg -i "{mp4_file}" -metadata title="{new_title}" -metadata comment="{episode_comment}" -c copy "{mp4_file}_modified.mp4"')
+        modified_mp4 = f"{mp4_file}_modified.mp4"
+        os.system(f'ffmpeg -i "{mp4_file}" -metadata title="{new_title}" -metadata comments="{episode_comment}" -c copy "{modified_mp4}"')
         
-        # Move file to season folder
-        shutil.move(mp4_file, os.path.join(season_folder, mp4_file))
+        # Move the modified file to the season folder instead of the original file
+        shutil.move(modified_mp4, os.path.join(season_folder, mp4_file))
         
-        print(f"Processed {mp4_file}: Title='{new_title}', Comment='{episode_comment}'. Moved to {season_folder}")
+        # Remove the '_modified' label from the file name
+        os.rename(os.path.join(season_folder, mp4_file), os.path.join(season_folder, mp4_file.replace('_modified', '')))
+        
+        print(f"Processed {mp4_file}: Title='{new_title}', Comments='{episode_comment}'. Moved to {season_folder}")
 
         # Delete the file after copying
-        modified_mp4 = f"{mp4_file}_modified.mp4"
-        os.remove(modified_mp4)
+        os.remove(mp4_file)
 
     # Move split episodes after updating metadata
     episodes_to_move = split_special_episodes()  # Get episodes to move
