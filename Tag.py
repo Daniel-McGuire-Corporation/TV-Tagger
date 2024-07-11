@@ -3,11 +3,6 @@ import json
 import shutil
 import argparse
 
-import os
-import json
-import shutil
-import argparse
-
 def split_special_episodes():
     mp4_files = [filename for filename in os.listdir('.') if filename.lower().endswith('.mp4')]
 
@@ -49,9 +44,9 @@ def split_special_episodes():
 def convert():
     # Get a list of all MKV files in the current folder
     mkv_files = [filename for filename in os.listdir('.') if filename.lower().endswith('.mkv')]
-    
+
     if not mkv_files:
-        print("No MKV files found.")
+        print("No MKV files found. Skipping the conversion step.")
         return
     
     for mkv_file in mkv_files:
@@ -63,7 +58,7 @@ def convert():
         shutil.move(mkv_file, os.path.join("original", mkv_file))
         print(f"Moved original {mkv_file} to 'original' folder.")
 
-def update_metadata(json_file, episodes_to_move):
+def update_metadata(json_file):
     # Read data from the JSON file
     with open(json_file, 'r') as f:
         data = json.load(f)
@@ -86,7 +81,7 @@ def update_metadata(json_file, episodes_to_move):
 
             # Construct new metadata tags
             show_title = data["Show"]["Title"]
-            season_title = next(iter(data["Show"]["Seasons"].values()))["Title"]  # Assuming there's only one season for simplicity
+            season_title = data["Show"]["Seasons"][f"Season {season}"]["Title"]
             episode_data = data["Show"]["Seasons"][f"Season {season}"]["Episodes"][f"E{episode.zfill(2)}"]
             episode_title = episode_data["Title"]
             episode_comment = episode_data["Comment"]
@@ -97,6 +92,10 @@ def update_metadata(json_file, episodes_to_move):
             print(f"KeyError: {e}. Skipping {mp4_file}")
             continue
         
+        # Create the season folder if it does not exist
+        if not os.path.exists(season_folder):
+            os.makedirs(season_folder)
+
         # Modify the MP4 file's metadata using ffmpeg
         os.system(f'ffmpeg -i "{mp4_file}" -metadata title="{new_title}" -metadata comment="{episode_comment}" -c copy "{mp4_file}_modified.mp4"')
         
@@ -105,7 +104,12 @@ def update_metadata(json_file, episodes_to_move):
         
         print(f"Processed {mp4_file}: Title='{new_title}', Comment='{episode_comment}'. Moved to {season_folder}")
 
+        # Delete the file after copying
+        modified_mp4 = f"{mp4_file}_modified.mp4"
+        os.remove(modified_mp4)
+
     # Move split episodes after updating metadata
+    episodes_to_move = split_special_episodes()  # Get episodes to move
     for episode1_name, episode2_name, original_file in episodes_to_move:
         shutil.move(episode1_name, os.path.join(season_folder, episode1_name))
         shutil.move(episode2_name, os.path.join(season_folder, episode2_name))
