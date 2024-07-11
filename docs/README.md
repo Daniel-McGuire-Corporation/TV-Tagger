@@ -1,3 +1,4 @@
+<sub>I don't even know how there are two example folders :skull:</sub>
 # TV Tagger
 
  Requires FFMPEG in PATH
