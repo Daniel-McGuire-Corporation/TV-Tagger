@@ -7,35 +7,35 @@
           "Episodes": {
             "E01": {
               "Title": "Chapter One: The Crawl ",
-              "Comment": "Episode 1 comment or description."
+              "Comments": "Episode 1 Comments or description."
             },
             "E02": {
               "Title": "Chapter Two: The Vanishing of BLANK Wheeler",
-              "Comment": "Episode 2 comment or description."
+              "Comments": "Episode 2 Comments or description."
             },
             "E03": {
               "Title": "Chapter Three: The Turbow Trap",
-              "Comment": "Episode 3 comment or description."
+              "Comments": "Episode 3 Comments or description."
             },
             "E04": {
               "Title": "Chapter Four: Sorcerer",
-              "Comment": "Episode 4 comment or description."
+              "Comments": "Episode 4 Comments or description."
             },
             "E05": {
               "Title": "Chapter Five: Shock Jock",
-              "Comment": "Episode 5 comment or description."
+              "Comments": "Episode 5 Comments or description."
             },
             "E06": {
               "Title": "Chapter Six: Escape From Camazotz",
-              "Comment": "Episode 6 comment or description."
+              "Comments": "Episode 6 Comments or description."
             },
             "E07": {
               "Title": "Chapter Seven: Episode 7 Title",
-              "Comment": "Episode 7 comment or description."
+              "Comments": "Episode 7 Comments or description."
             },
             "E08": {
               "Title": "Chapter Eight: Episode 8 Title",
-              "Comment": "Episode 8 comment or description."
+              "Comments": "Episode 8 Comments or description."
             }
           }
         }

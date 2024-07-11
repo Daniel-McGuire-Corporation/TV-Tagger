@@ -7,15 +7,15 @@
         "Episodes": {
           "E01": {
             "Title": "Episode 1 Title",
-            "Comment": "Episode 1 description."
+            "Comments": "Episode 1 description."
           },
           "E02": {
             "Title": "Episode 2 Title",
-            "Comment": "Episode 2 description."
+            "Comments": "Episode 2 description."
           },
           "E03": {
             "Title": "Episode 3 Title",
-            "Comment": "Episode 3 description."
+            "Comments": "Episode 3 description."
           }
           // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
         }
@@ -25,15 +25,15 @@
         "Episodes": {
           "E01": {
             "Title": "Episode 1 Title",
-            "Comment": "Episode 1 description."
+            "Comments": "Episode 1 description."
           },
           "E02": {
             "Title": "Episode 2 Title",
-            "Comment": "Episode 2 description."
+            "Comments": "Episode 2 description."
           },
           "E03": {
             "Title": "Episode 3 Title",
-            "Comment": "Episode 3 description."
+            "Comments": "Episode 3 description."
           }
           // Add more episodes as needed (DO NOT INCLUDE THIS LINE)
         }

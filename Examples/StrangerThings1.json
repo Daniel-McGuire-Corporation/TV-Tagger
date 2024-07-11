@@ -7,35 +7,35 @@
         "Episodes": {
           "E01": {
             "Title": "Chapter One: The Vanishing of Will Byers",
-            "Comment": "Will Byers disappears under mysterious circumstances."
+            "Comments": "Will Byers disappears under mysterious circumstances."
           },
           "E02": {
             "Title": "Chapter Two: The Weirdo on Maple Street",
-            "Comment": "The boys search for Will while Eleven makes a startling discovery."
+            "Comments": "The boys search for Will while Eleven makes a startling discovery."
           },
           "E03": {
             "Title": "Chapter Three: Holly, Jolly",
-            "Comment": "Joyce and the boys face terrifying forces to find Will."
+            "Comments": "Joyce and the boys face terrifying forces to find Will."
           },
           "E04": {
             "Title": "Chapter Four: The Body",
-            "Comment": "Hawkins Lab's secrets are revealed as the search for Will continues."
+            "Comments": "Hawkins Lab's secrets are revealed as the search for Will continues."
           },
           "E05": {
             "Title": "Chapter Five: The Flea and the Acrobat",
-            "Comment": "Hopper and Joyce uncover the truth about Hawkins Lab."
+            "Comments": "Hopper and Joyce uncover the truth about Hawkins Lab."
           },
           "E06": {
             "Title": "Chapter Six: The Monster",
-            "Comment": "Nancy and Jonathan confront the monster from the Upside Down."
+            "Comments": "Nancy and Jonathan confront the monster from the Upside Down."
           },
           "E07": {
             "Title": "Chapter Seven: The Bathtub",
-            "Comment": "Eleven helps the boys as they set a trap for the creature."
+            "Comments": "Eleven helps the boys as they set a trap for the creature."
           },
           "E08": {
             "Title": "Chapter Eight: The Upside Down",
-            "Comment": "The final showdown with the Demogorgon."
+            "Comments": "The final showdown with the Demogorgon."
           }
         }
       }
