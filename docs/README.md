@@ -5,7 +5,7 @@
 
 ## How to use:
 
-1. Gather Files.
+1. Gather Files. (Video files should be named like this: 'SHOW NAME S0E0.(mkv/mp4)')
  - Put the Python Script, template.json, and all episodes (MKV or MP4) in the same folder. (Only one type of video file at a time!)
 
 2. Setup.
