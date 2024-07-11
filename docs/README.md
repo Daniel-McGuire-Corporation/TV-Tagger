@@ -1,7 +1,10 @@
 <sub>I don't even know how there are two example folders :skull:</sub>
 # TV Tagger
 
- Requires FFMPEG in PATH
+> [!NOTE] 
+> Requires FFMPEG in PATH
+>
+> Doesnt work with multiple seasons (yet)
 
 ## How to use:
 
