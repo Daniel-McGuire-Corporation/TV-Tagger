@@ -1,7 +1,7 @@
 # Check if winget is available
 if (Get-Command winget -ErrorAction SilentlyContinue) {
     # Install Python using winget
-    winget install Python.Python
+    winget install Python.Python Ffmpeg.Ffmpeg
     Write-Output "Python installed via winget."
 } else {
     # Open Microsoft Store
