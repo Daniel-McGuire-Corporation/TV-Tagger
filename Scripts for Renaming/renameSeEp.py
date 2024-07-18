@@ -1,20 +1,20 @@
-﻿import os
+import os
 import re
 
-# Define the regex pattern to match 'Show Title Season X Episode X'
-pattern = r'(?:(?:S(?:eason)?)?\s*(\d+)[sx]*)(?:(?:E(?:pisode)?)?\s*(\d+))'
+# Define the regex pattern to match 'Show Title SXXEYY'
+pattern = re.compile(r'(.*?)[ ._]*[Ss](\d{1,2})[ ._]*[Ee](\d{1,2})')
 
 # Get all files in the current directory
 files = [file for file in os.listdir() if os.path.isfile(file)]
 
 for file in files:
     # Check if the file matches the pattern
-    match = re.match(pattern, file)
+    match = pattern.match(file)
     if match:
         # Extract components from the filename
-        show_title = match.group(0)
-        season_number = match.group(1)
-        episode_number = match.group(2)
+        show_title = match.group(1).strip()
+        season_number = match.group(2)
+        episode_number = match.group(3)
         
         # Form the new filename
         new_filename = f"{show_title} S{season_number.zfill(2)}E{episode_number.zfill(2)}{os.path.splitext(file)[1]}"
