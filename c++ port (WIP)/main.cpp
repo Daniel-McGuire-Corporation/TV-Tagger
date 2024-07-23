@@ -6,10 +6,10 @@
 #include <string>
 #include <sstream>
 #include <map>
-#include <json/json.h>
+#include "thirdparty/json.hpp"
 #include <cstdlib>
-#include <argparse/argparse.hpp>
-#include <shlwapi.h>
+#include "thirdparty/argparse.hpp"
+#include <shlwapi.h> 
 
 namespace fs = std::filesystem;
 
@@ -23,67 +23,9 @@ std::vector<std::string> get_files_with_extension(const std::string& extension) 
     return files;
 }
 
-std::vector<std::tuple<std::string, std::string, std::string>> split_special_episodes() {
-    std::vector<std::string> mp4_files = get_files_with_extension(".mp4");
-    std::vector<std::tuple<std::string, std::string, std::string>> episodes_to_move;
-
-    for (const auto& mp4_file : mp4_files) {
-        if (mp4_file.find(" S") != std::string::npos && mp4_file.find("-E") != std::string::npos) {
-            try {
-                size_t pos = mp4_file.rfind(' ');
-                std::string base_name = mp4_file.substr(0, pos);
-                std::string range_part = mp4_file.substr(pos + 1);
-                size_t dash_pos = range_part.find('-');
-                int episode_start = std::stoi(range_part.substr(1, dash_pos - 1));
-                int episode_end = std::stoi(range_part.substr(dash_pos + 2));
-
-                if (episode_end <= episode_start) {
-                    std::cout << "Invalid episode range in " << mp4_file << ". Skipping." << std::endl;
-                    continue;
-                }
-
-                int midpoint = (episode_start + episode_end) / 2;
-                std::string episode1_name = base_name + " S1E" + std::to_string(episode_start) + ".mp4";
-                std::string episode2_name = base_name + " S1E" + std::to_string(midpoint + 1) + ".mp4";
-
-                std::string command1 = "ffmpeg -i \"" + mp4_file + "\" -ss 0 -t " + std::to_string(midpoint - episode_start + 1) + " -c copy \"" + episode1_name + "\"";
-                std::string command2 = "ffmpeg -i \"" + mp4_file + "\" -ss " + std::to_string(midpoint - episode_start + 1) + " -c copy \"" + episode2_name + "\"";
-                std::system(command1.c_str());
-                std::system(command2.c_str());
-
-                std::cout << "Split " << mp4_file << " into " << episode1_name << " and " << episode2_name << std::endl;
-                episodes_to_move.emplace_back(episode1_name, episode2_name, mp4_file);
-            } catch (const std::exception& e) {
-                std::cout << "Error processing " << mp4_file << ": " << e.what() << std::endl;
-            }
-        }
-    }
-    return episodes_to_move;
-}
-
-void convert() {
-    std::vector<std::string> mkv_files = get_files_with_extension(".mkv");
-
-    if (mkv_files.empty()) {
-        std::cout << "No MKV files found. Skipping the conversion step." << std::endl;
-        return;
-    }
-
-    for (const auto& mkv_file : mkv_files) {
-        std::string mp4_file = mkv_file.substr(0, mkv_file.find_last_of('.')) + ".mp4";
-        std::string command = "ffmpeg -i \"" + mkv_file + "\" -codec copy \"" + mp4_file + "\"";
-        std::system(command.c_str());
-        std::cout << "Converted " << mkv_file << " to " << mp4_file << "." << std::endl;
-
-        fs::create_directory("original");
-        fs::rename(mkv_file, "original/" + mkv_file);
-        std::cout << "Moved original " << mkv_file << " to 'original' folder." << std::endl;
-    }
-}
-
 void update_metadata(const std::string& json_file) {
     std::ifstream ifs(json_file);
-    Json::Value data;
+    nlohmann::json data;
     ifs >> data;
 
     std::vector<std::string> mp4_files = get_files_with_extension(".mp4");
@@ -103,10 +45,10 @@ void update_metadata(const std::string& json_file) {
 
             std::string season_folder = "Season " + std::string(2 - season.length(), '0') + season;
 
-            std::string show_title = data["Show"]["Title"].asString();
-            std::string season_title = data["Show"]["Seasons"]["Season " + season]["Title"].asString();
-            std::string episode_title = data["Show"]["Seasons"]["Season " + season]["Episodes"]["E" + std::string(2 - episode.length(), '0') + episode]["Title"].asString();
-            std::string episode_comment = data["Show"]["Seasons"]["Season " + season]["Episodes"]["E" + std::string(2 - episode.length(), '0') + episode]["Comments"].asString();
+            std::string show_title = data["Show"]["Title"].get<std::string>();
+            std::string season_title = data["Show"]["Seasons"]["Season " + season]["Title"].get<std::string>();
+            std::string episode_title = data["Show"]["Seasons"]["Season " + season]["Episodes"]["E" + std::string(2 - episode.length(), '0') + episode]["Title"].get<std::string>();
+            std::string episode_comment = data["Show"]["Seasons"]["Season " + season]["Episodes"]["E" + std::string(2 - episode.length(), '0') + episode]["Comments"].get<std::string>();
 
             std::string new_title = show_title + " | " + season_title + " S" + season + "E" + episode + " - " + episode_title;
 
@@ -126,50 +68,48 @@ void update_metadata(const std::string& json_file) {
             std::cout << "Error processing " << mp4_file << ": " << e.what() << std::endl;
         }
     }
-
-    auto episodes_to_move = split_special_episodes();
-    for (const auto& [episode1_name, episode2_name, original_file] : episodes_to_move) {
-        fs::rename(episode1_name, "Season " + std::string(2 - episode1_name.length(), '0') + episode1_name);
-        fs::rename(episode2_name, "Season " + std::string(2 - episode2_name.length(), '0') + episode2_name);
-        std::cout << "Moved " << episode1_name << " and " << episode2_name << " to " << "Season " + std::string(2 - episode1_name.length(), '0') + episode1_name << std::endl;
-    }
 }
 
 int main(int argc, char* argv[]) {
-    argparse::ArgumentParser program("media_processor");
+    struct MyArgs : public argparse::Args {
+        std::string &json = arg("json", "Path to JSON file for metadata (default: template.json)");
+        bool &help = flag("help", "Show this help message and exit");
+    };
 
-    program.add_argument("-json")
-        .default_value(std::string("template.json"))
-        .help("Path to JSON file for metadata (default: template.json)");
+    auto args = argparse::parse<MyArgs>(argc, argv);
 
-    program.add_argument("-help")
-        .default_value(false)
-        .implicit_value(true)
-        .help("Show this help message and exit");
-
-    try {
-        program.parse_args(argc, argv);
-    } catch (const std::runtime_error& err) {
-        std::cerr << err.what() << std::endl;
-        std::cerr << program;
-        return 1;
-    }
-
-    if (program.get<bool>("-help")) {
-        std::cout << program;
+    if (args.help) {
+        args.print(); // prints all variables
         return 0;
     }
 
-    std::string json_file = program.get<std::string>("-json");
+    std::string json_file = args.json;
+
+    HMODULE convertDLL = LoadLibrary(L"convert.dll");
+    HMODULE splitDLL = LoadLibrary(L"split.dll");
+
+    if (convertDLL == NULL || splitDLL == NULL) {
+        std::cerr << "Failed to load DLLs." << std::endl;
+        return 1;
+    }
+
+    typedef void (*ConvertFunction)();
+    typedef std::vector<std::tuple<std::string, std::string, std::string>> (*SplitFunction)();
+
+    ConvertFunction convert = (ConvertFunction)GetProcAddress(convertDLL, "convert");
+    SplitFunction split = (SplitFunction)GetProcAddress(splitDLL, "split");
+
+    if (convert == NULL || split == NULL) {
+        std::cerr << "Failed to load functions from DLLs." << std::endl;
+        return 1;
+    }
 
     convert();
-    split_special_episodes();
+    auto episodes_to_move = split();
+
     update_metadata(json_file);
 
     std::cout << "Script execution completed." << std::endl;
 
     return 0;
 }
-
-
- 
